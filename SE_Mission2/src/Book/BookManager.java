@@ -17,7 +17,7 @@ public class BookManager extends BookManagerBase {
 		//LinearSearch.
 		while(itr_book.hasNext()) {
 			Book bookInCurrentLoop = itr_book.next();
-			if(bookInCurrentLoop.id == in_id) {
+			if(bookInCurrentLoop.getId() == in_id) {
 				return bookInCurrentLoop;
 			}
 		}

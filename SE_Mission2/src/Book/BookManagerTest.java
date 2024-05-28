@@ -57,7 +57,7 @@ class BookManagerTest {
 			
 			Book bookInCurrentLoop = new Book(bookID, bookTitle, bookAuthor, bookPublicDate);
 			if(bookID != ID_bookNotInBookManager) {
-				bookManager.AddBook(bookInCurrentLoop.id, bookInCurrentLoop.title, bookInCurrentLoop.author, bookInCurrentLoop.publicDate);
+				bookManager.AddBook(bookInCurrentLoop.getId(), bookInCurrentLoop.getTitle(), bookInCurrentLoop.getAuthor(), bookInCurrentLoop.getPublicDate());
 				if(bookID == ID_bookInBookManager) {
 					bookInBookManager = bookInCurrentLoop;
 				}
@@ -73,12 +73,12 @@ class BookManagerTest {
 	void testAddBooks() {
 		try {
 			//bookNotInBookManager를 bookManager에 추가. -> 정상적인 return.
-			Book retBook = bookManager.AddBook(bookNotInBookManager.id, bookNotInBookManager.title, bookNotInBookManager.author, bookNotInBookManager.publicDate);
-			assertEquals(bookNotInBookManager.id, retBook.id, "bookNotInBookManager, retBook ID is not equal");
-			System.out.printf("{id: '%d', 제목: '%s', 저자 : '%s', 출판년도 : '%d'}도서가 추가되었습니다.\n", retBook.id, retBook.title, retBook.author, retBook.publicDate);		
+			Book retBook = bookManager.AddBook(bookNotInBookManager.getId(), bookNotInBookManager.getTitle(), bookNotInBookManager.getAuthor(), bookNotInBookManager.getPublicDate());
+			assertEquals(bookNotInBookManager.getId(), retBook.getId(), "bookNotInBookManager, retBook ID is not equal");
+			System.out.printf("{id: '%d', 제목: '%s', 저자 : '%s', 출판년도 : '%d'}도서가 추가되었습니다.\n", retBook.getId(), retBook.getTitle(), retBook.getAuthor(), retBook.getPublicDate());		
 
 			//bookInBookManager를 bookManager에 추가. -> throws exception.
-			BookManagerException ex = assertThrows(BookManagerException.class, () -> bookManager.AddBook(bookInBookManager.id, bookInBookManager.title, bookInBookManager.author, bookInBookManager.publicDate));
+			BookManagerException ex = assertThrows(BookManagerException.class, () -> bookManager.AddBook(bookInBookManager.getId(), bookInBookManager.getTitle(), bookInBookManager.getAuthor(), bookInBookManager.getPublicDate()));
 			System.out.println(ex.getMessage());
 		} catch(BookManagerException exc){
 		}
@@ -88,13 +88,13 @@ class BookManagerTest {
 	void testSearchBooks() {
 		try {
 			//bookInBookManager를 bookManager에서 탐색. -> 정상적인 return.
-			Book retBook = bookManager.SearchBook(bookInBookManager.id);
-			assertEquals(bookInBookManager.id, retBook.id, "testCase, retBook ID is not equal");
+			Book retBook = bookManager.SearchBook(bookInBookManager.getId());
+			assertEquals(bookInBookManager.getId(), retBook.getId(), "testCase, retBook ID is not equal");
 			System.out.printf("검색결과:\n");
-			System.out.printf("{id: '%d', 제목: '%s', 저자 : '%s', 출판년도 : '%d'}\n", retBook.id, retBook.title, retBook.author, retBook.publicDate);			
+			System.out.printf("{id: '%d', 제목: '%s', 저자 : '%s', 출판년도 : '%d'}\n", retBook.getId(), retBook.getTitle(), retBook.getAuthor(), retBook.getPublicDate());			
 			
 			//bookNotInBookManager를 bookManager에서 탐색. -> throws exception.
-			BookManagerException ex = assertThrows(BookManagerException.class, () -> bookManager.SearchBook(bookNotInBookManager.id));
+			BookManagerException ex = assertThrows(BookManagerException.class, () -> bookManager.SearchBook(bookNotInBookManager.getId()));
 			System.out.println(ex.getMessage());
 
 		} catch(BookManagerException exc){
@@ -106,13 +106,13 @@ class BookManagerTest {
 	void testRemoveBooks() {
 		try {
 			//bookInBookManager를 bookManager에서 제거. -> 정상적인 return.
-			Book retBook = bookManager.RemoveBook(bookInBookManager.id);
-			assertEquals(bookInBookManager.id, retBook.id, "testCase, retBook ID is not equal");
-			System.out.printf("{id: '%d', 제목: '%s', 저자 : '%s', 출판년도 : '%d'}도서가 삭제되었습니다.\n", retBook.id, retBook.title, retBook.author, retBook.publicDate);		
+			Book retBook = bookManager.RemoveBook(bookInBookManager.getId());
+			assertEquals(bookInBookManager.getId(), retBook.getId(), "testCase, retBook ID is not equal");
+			System.out.printf("{id: '%d', 제목: '%s', 저자 : '%s', 출판년도 : '%d'}도서가 삭제되었습니다.\n", retBook.getId(), retBook.getTitle(), retBook.getAuthor(), retBook.getPublicDate());		
 			
 			
 			//bookNotInBookManager를 bookManager에서 제거. -> throws exception.
-			BookManagerException ex = assertThrows(BookManagerException.class, () -> bookManager.RemoveBook(bookNotInBookManager.id));
+			BookManagerException ex = assertThrows(BookManagerException.class, () -> bookManager.RemoveBook(bookNotInBookManager.getId()));
 			System.out.println(ex.getMessage());
 
 		} catch(BookManagerException exc){

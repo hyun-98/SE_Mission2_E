@@ -13,7 +13,7 @@ public class BookManagerBS extends BookManagerBase {
 	@Override
 	protected Book InnerSearch(int in_id) {
 		// Binary Search 전에는 sorting이 필요.
-        bookList.sort(Comparator.comparingInt(b -> b.id));
+        bookList.sort(Comparator.comparingInt(b -> b.getId()));
 
 		int leftIdx = 0, rightIdx = bookList.size() - 1; 
 	       
@@ -23,11 +23,11 @@ public class BookManagerBS extends BookManagerBase {
             
             Book bookInCurrentLoop = bookList.get(midIdx);
             
-            if (bookInCurrentLoop.id == in_id) {
+            if (bookInCurrentLoop.getId() == in_id) {
             	return bookInCurrentLoop;             	
             }
    
-            if (bookInCurrentLoop.id < in_id) {
+            if (bookInCurrentLoop.getId() < in_id) {
             	leftIdx = midIdx + 1;             	
             }
    
