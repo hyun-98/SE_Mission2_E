@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.LinkedList;
 import java.util.List;
 
-//BookManager를 test하기 위한 class.
-class BookManagerTest {
-	//각 test전 bookManager에 입력되는 book의 개수.
+//BookManagerBS를 test하기 위한 class.
+class BookManagerBSTest {
+	//각 test전 bookManagerBS에 입력되는 book의 개수.
 	final int NUMB_OF_TEST_CASES = 10000;
 	
-	//Test하기 위한 book manager instance.
-	BookManager bookManager;
+	//Test하기 위한 BookManagerBS instance.
+	BookManagerBS bookManager;
 	
 	//Test 전 bookManager에 추가되는 book 중 하나.
 	Book bookInBookManager;
@@ -25,20 +25,20 @@ class BookManagerTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		bookManager = new BookManager();
+		bookManager = new BookManagerBS();
 		
 		//bookInBookManager 및 bookNotInBookManager의 ID를 난수로 지정.
-		long ID_bookInBookManager = (System.currentTimeMillis() % NUMB_OF_TEST_CASES);
-		long ID_bookNotInBookManager = (System.currentTimeMillis() % NUMB_OF_TEST_CASES);
+		int ID_bookInBookManager = (int) (System.currentTimeMillis() % NUMB_OF_TEST_CASES);
+		int ID_bookNotInBookManager = (int) (System.currentTimeMillis() % NUMB_OF_TEST_CASES);
 		
 		//bookInBookManager != bookNotInBookManager를 위해 loop문을 활용.
 		while(ID_bookInBookManager == ID_bookNotInBookManager) {
-			ID_bookNotInBookManager = (System.currentTimeMillis() % NUMB_OF_TEST_CASES);
+			ID_bookNotInBookManager = (int) (System.currentTimeMillis() % NUMB_OF_TEST_CASES);
 		}
 		
 		System.out.printf("ID of a Book In BookManager = %d\n", ID_bookInBookManager);
 		System.out.printf("ID of a Book Not In BookManager = %d\n", ID_bookNotInBookManager);
-
+		
 		//BookManager에 추가되어야 할 book의 ID를 담고 있는 list.
 		List<Integer> remainIDList = new LinkedList<Integer>();
 		for(int i = 0; i < NUMB_OF_TEST_CASES; i++) {

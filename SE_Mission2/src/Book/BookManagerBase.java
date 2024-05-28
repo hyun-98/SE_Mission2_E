@@ -22,7 +22,7 @@ abstract public class BookManagerBase {
 	//반환 값. 추가된 책의 book instance or 같은 id의 책이 이미 존재한다면 throws exception.
 	public Book AddBook(int in_id, String in_title, String in_author, int in_publicDate) throws BookManagerException {
 		if(InnerSearch(in_id) != null) {
-			throw new BookManagerException("해당 ID(%d)는 이미 존재합니다.\n");
+			throw new BookManagerException("해당 ID(" + Integer.toString(in_id) + ")는 이미 존재합니다.\n");
 		} else {
 			Book book = new Book(in_id, in_title, in_author, in_publicDate);
 			bookList.add(book);
@@ -52,7 +52,7 @@ abstract public class BookManagerBase {
 			bookList.remove(book);
 			return book;
 		} else {
-			throw new BookManagerException("해당 ID(%d)의 도서를 찾을 수 없습니다.\n");
+			throw new BookManagerException("해당 ID(" + Integer.toString(in_id) + ")의 도서를 찾을 수 없습니다.\n");
 		}
 	}
 }
